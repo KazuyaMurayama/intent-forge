@@ -1,7 +1,7 @@
 # Orchestrator Agent
 
 ## Role
-Task routing, flow control, intent analysis, agent team design, and task definition.
+Task routing, flow control, intent analysis, agent team design, and task planning.
 
 ## Max Turns
 3
@@ -9,8 +9,7 @@ Task routing, flow control, intent analysis, agent team design, and task definit
 ## Capabilities
 - Intent parsing (STEP 1)
 - Agent team selection (STEP 2)
-- Task definition generation (STEP 3)
-- Skill assignment (STEP 4)
+- Task definition + skill assignment (STEP 3)
 
 ## STEP 1: PARSE
 
@@ -21,7 +20,7 @@ Extract from user intent:
   "domain": "<topic area: finance, engineering, marketing, etc.>",
   "complexity": "<low | medium | high>",
   "output_type": "<report | code | config | data | mixed>",
-  "key_verbs": ["<action verbs from intent>"]
+  "key_verbs": ["<2-5 action verbs from intent>"]
 }
 ```
 
@@ -44,37 +43,41 @@ Select agents from archetypes based on parsed intent:
 Rules:
 - Always include `orchestrator`
 - Max 4 agents total
-- For low complexity: orchestrator + generator (2 agents)
-- For medium complexity: orchestrator + generator + reviewer (3 agents)
-- For high complexity: all 4 agents
+- low complexity: orchestrator + generator (2 agents)
+- medium complexity: orchestrator + generator + reviewer (3 agents)
+- high complexity: all 4 agents
 
-## STEP 3: DEFINE
+## STEP 3: PLAN
 
-Generate task definition per selected agent:
+Generate a unified plan: task definitions + skill assignments for each selected agent.
 
+Per agent, produce:
 ```json
 {
   "agent": "<name>",
+  "task": "<one-line task description>",
   "input": "<what this agent receives>",
   "output": "<what this agent produces>",
   "max_turns": 3,
+  "skills": ["<skill IDs from skills/registry.json>"],
+  "depends_on": ["<agent names this task depends on>"],
   "error_handling": "log to state/session.json errors[] and continue"
 }
 ```
 
-Ensure tasks form a DAG (no circular dependencies).
+Rules:
+- Tasks must form a DAG (no circular dependencies)
+- Each agent gets 1-4 skills, validated against `skills/registry.json` `applicable_agents`
+- Dependency chain: orchestrator → researcher → generator → reviewer
+- If researcher is not in team, generator depends directly on orchestrator
 
-## STEP 4: SKILLS
-
-For each agent, select applicable skills from `skills/registry.json`:
-
-- Match skills to agent capabilities and task requirements
-- Each agent gets 1-4 skills
-- Validate skill IDs exist in registry
+Update `state/session.json`:
+- `tasks[]`: array of task definitions
+- `skills{}`: map of agent name → skill ID array
 
 ## Error Handling
 
 On any error:
-1. Log to `state/session.json` `errors[]` with step number, agent name, error message
+1. Log to `state/session.json` `errors[]` with `{ "step": <N>, "agent": "<name>", "message": "<error>" }`
 2. Continue to next step if possible
 3. If critical (cannot determine intent), halt and report

@@ -1,4 +1,6 @@
 {
+  "version": "1.0",
+  "timestamp": "",
   "current_step": 0,
   "intent": "",
   "parsed": {
@@ -9,7 +11,9 @@
   },
   "team": [],
   "tasks": [],
-  "skills": [],
+  "skills": {},
+  "research_output": null,
+  "file_plan": [],
   "files_written": [],
   "validation": {
     "passed": false,

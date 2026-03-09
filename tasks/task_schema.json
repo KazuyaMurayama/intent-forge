@@ -2,11 +2,15 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Intent-Forge Task Definition",
   "type": "object",
-  "required": ["agent", "input", "output", "max_turns"],
+  "required": ["agent", "task", "input", "output", "max_turns", "skills", "depends_on"],
   "properties": {
     "agent": {
       "type": "string",
       "enum": ["orchestrator", "researcher", "generator", "reviewer"]
+    },
+    "task": {
+      "type": "string",
+      "description": "One-line task description"
     },
     "input": {
       "type": "string",
@@ -18,22 +22,29 @@
     },
     "max_turns": {
       "type": "integer",
+      "minimum": 1,
       "maximum": 3,
       "default": 3
     },
     "skills": {
       "type": "array",
       "items": { "type": "string" },
-      "maxItems": 4
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "Skill IDs from skills/registry.json"
     },
     "depends_on": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Agent names this task depends on"
+      "items": {
+        "type": "string",
+        "enum": ["orchestrator", "researcher", "generator", "reviewer"]
+      },
+      "description": "Agent names this task depends on (must form DAG)"
     },
     "error_handling": {
       "type": "string",
       "default": "log to state/session.json errors[] and continue"
     }
-  }
+  },
+  "additionalProperties": false
 }
