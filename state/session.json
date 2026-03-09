@@ -1,0 +1,19 @@
+{
+  "current_step": 0,
+  "intent": "",
+  "parsed": {
+    "domain": "",
+    "complexity": "",
+    "output_type": "",
+    "key_verbs": []
+  },
+  "team": [],
+  "tasks": [],
+  "skills": [],
+  "files_written": [],
+  "validation": {
+    "passed": false,
+    "checks": []
+  },
+  "errors": []
+}

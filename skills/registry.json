@@ -1,0 +1,39 @@
+{
+  "skills": [
+    {
+      "id": "web_search",
+      "name": "Web Search",
+      "description": "Search the web for information, data, and references",
+      "applicable_agents": ["researcher"],
+      "requires": []
+    },
+    {
+      "id": "file_rw",
+      "name": "File Read/Write",
+      "description": "Read and write project files",
+      "applicable_agents": ["orchestrator", "researcher", "generator", "reviewer"],
+      "requires": []
+    },
+    {
+      "id": "code_exec",
+      "name": "Code Execution",
+      "description": "Execute code snippets for validation or computation",
+      "applicable_agents": ["generator", "reviewer"],
+      "requires": []
+    },
+    {
+      "id": "memory_store",
+      "name": "Memory Store",
+      "description": "Persist and retrieve intermediate results across steps",
+      "applicable_agents": ["orchestrator", "researcher", "generator"],
+      "requires": []
+    },
+    {
+      "id": "api_call",
+      "name": "API Call",
+      "description": "Make external API requests for data retrieval",
+      "applicable_agents": ["researcher"],
+      "requires": []
+    }
+  ]
+}
