@@ -18,14 +18,22 @@ Extract from user intent:
 }
 ```
 
-Complexity rules:
-- low = single-step output
-- medium = multi-step with analysis
-- high = research + analysis + generation
+Complexity: low = single-step output, medium = multi-step with analysis, high = research + analysis + generation.
+
+### Example
+INTENT: "NASDAQと相関が低くリターンが高いインデックスを特定して、簡潔なレポートにまとめたい"
+```json
+{
+  "domain": "finance",
+  "complexity": "high",
+  "output_type": "report",
+  "key_verbs": ["特定", "分析", "まとめる"]
+}
+```
 
 ## STEP 2: DESIGN
 
-Select agents based on complexity:
+Base selection by complexity:
 
 | Complexity | Team |
 |-----------|------|
@@ -33,22 +41,11 @@ Select agents based on complexity:
 | medium | orchestrator, generator, reviewer |
 | high | orchestrator, researcher, generator, reviewer |
 
-Override: include researcher if external data is explicitly needed regardless of complexity.
+Adjust: add researcher if external data is needed regardless of complexity. Remove reviewer if output is raw data with no formatting need.
 
 ## STEP 3: PLAN
 
-Per agent, produce task definition (schema: `tasks/task_schema.json`):
-```json
-{
-  "agent": "<name>",
-  "task": "<one-line description>",
-  "input": "<from upstream>",
-  "output": "<for downstream>",
-  "max_turns": 3,
-  "skills": ["<IDs from skills/registry.json, 1-4, must match applicable_agents>"],
-  "depends_on": ["<upstream agent names>"]
-}
-```
+Per agent, produce one task definition per `tasks/task_schema.json`.
 
 Dependency chain: orchestrator → researcher → generator → reviewer.
 If no researcher: generator depends on orchestrator directly.

@@ -25,8 +25,8 @@ If `research_output` has `data_tables`, plan files to present them.
 3. Update `files_written[]` with `{ "path": "", "lines": 0 }`
 
 Content rules:
-- CLAUDE.md: routing/prompt logic only, zero documentation
-- Agent .md: must define role, max_turns:3, I/O, behavior
+- CLAUDE.md: routing/prompt logic only. Structure: pipeline steps (step→agent→action), error convention, constraints. No prose, no docs. Model after intent-forge's own CLAUDE.md.
+- Agent .md: `# Name`, `## Role` (1 line), `## Max Turns` = 3, then step definitions with I/O
 - Code: clean, minimal | Docs: concise, actionable | Config: valid, minimal
 
 On write failure: log error, continue to next file. On limit exceeded: consolidate.

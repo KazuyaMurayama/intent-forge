@@ -2,43 +2,27 @@
   "skills": [
     {
       "id": "web_search",
-      "name": "Web Search",
-      "description": "Search the web for information, data, and references",
+      "use_when": "External data, market info, or reference material is needed",
       "applicable_agents": ["researcher"],
-      "requires": ["internet_access"],
-      "use_when": "External data, market info, or reference material is needed"
+      "requires": ["internet_access"]
     },
     {
       "id": "file_rw",
-      "name": "File Read/Write",
-      "description": "Read and write project files",
+      "use_when": "Read/write project files (always available)",
       "applicable_agents": ["orchestrator", "researcher", "generator", "reviewer"],
-      "requires": [],
-      "use_when": "Always available for all agents"
+      "requires": []
     },
     {
       "id": "code_exec",
-      "name": "Code Execution",
-      "description": "Execute code snippets for validation or computation",
+      "use_when": "Code testing, validation, or computation is required",
       "applicable_agents": ["generator", "reviewer"],
-      "requires": ["runtime_environment"],
-      "use_when": "Code needs to be tested, validated, or computation is required"
-    },
-    {
-      "id": "memory_store",
-      "name": "Memory Store",
-      "description": "Persist and retrieve intermediate results across pipeline steps",
-      "applicable_agents": ["orchestrator", "researcher", "generator"],
-      "requires": [],
-      "use_when": "Intermediate results need to survive across steps or agent boundaries"
+      "requires": ["runtime_environment"]
     },
     {
       "id": "api_call",
-      "name": "API Call",
-      "description": "Make external API requests for structured data retrieval",
+      "use_when": "Structured data from external APIs is needed (financial, weather, etc.)",
       "applicable_agents": ["researcher"],
-      "requires": ["internet_access", "api_credentials"],
-      "use_when": "Structured data from external APIs is needed (financial data, weather, etc.)"
+      "requires": ["internet_access"]
     }
   ]
 }

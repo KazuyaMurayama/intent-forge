@@ -1,34 +1,24 @@
 # INTENT-FORGE ROUTER
 
-## Routing Rules
-
-On user input, execute the 8-step pipeline below. Load each agent via `agents/{name}.md` on demand. Persist all state to `state/session.json` after each step.
+On user input, execute steps 1-8. Load agent from `agents/{name}.md` per step. Update `state/session.json` after each step.
 
 ## Pipeline
 
-1. **PARSE** → `agents/orchestrator.md` → Extract `parsed`: domain, complexity, output_type, key_verbs
-2. **DESIGN** → `agents/orchestrator.md` → Select team (max 4) from archetypes
-3. **PLAN** → `agents/orchestrator.md` → Task definitions + skill assignments per agent
-4. **RESEARCH** → `agents/researcher.md` → If researcher in team: structured findings → `research_output`. Else: skip, set null
-5. **STRUCTURE** → `agents/generator.md` → Design file tree (max 12 files, ≤200 lines each)
-6. **WRITE** → `agents/generator.md` → Write files to `output/`, log `✅ wrote [filename]`
-7. **VALIDATE** → `agents/reviewer.md` → Run 10 checks (see reviewer.md)
-8. **SUMMARY** → `agents/reviewer.md` → Output summary + actionable next steps
-
-## State
-
-Use `state/session.json` as schema template. Update after each step.
+1. **PARSE** → `orchestrator` → Extract `parsed`
+2. **DESIGN** → `orchestrator` → Select team
+3. **PLAN** → `orchestrator` → Task definitions per `tasks/task_schema.json` + skills per `skills/registry.json`
+4. **RESEARCH** → `researcher` → If in team: `research_output`. Else: null, skip
+5. **STRUCTURE** → `generator` → File tree → `file_plan`
+6. **WRITE** → `generator` → Files → `output/`, log `✅ wrote [filename]`
+7. **VALIDATE** → `reviewer` → 10 checks
+8. **SUMMARY** → `reviewer` → Summary + next actions
 
 ## Error Convention
 
-On error at any step: append `{ "step": N, "agent": "<name>", "message": "<error>" }` to `state/session.json` `errors[]` and continue. Halt only if intent cannot be determined.
-
-## Output Convention
-
-All generated files → `output/` directory. Self-contained project ready for `gh repo create` + `git push`. STEP 8 includes copy-pasteable commands.
+On error: append `{ "step": N, "agent": "", "message": "" }` to `errors[]` and continue. Halt only if intent is undetermined.
 
 ## Constraints
 
-- Max agents: 4 | Max turns/agent: 3 | Max steps: 8
-- Max files: 12 | Max lines/file: 200
-- Output → `output/` | This file: routing logic only
+- Agents ≤ 4 | Turns/agent ≤ 3 | Steps ≤ 8 | Files ≤ 12 | Lines/file ≤ 200
+- Output → `output/` (self-contained, ready for `gh repo create` + `git push`)
+- This file: routing logic only
