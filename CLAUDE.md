@@ -2,6 +2,11 @@
 
 On user input, execute steps 1-8. Load agent from `agents/{name}.md` per step. Update `state/session.json` after each step.
 
+## Prohibitions
+
+- **実分析・実行の禁止**: データ取得、スクリプト実行、API呼び出し等の実作業を行わない。生成するのはプロジェクト構成のみ。
+- **生成物の役割**: `output/` はユーザーが別セッションで開いて作業を開始するためのプロジェクトテンプレート。intent-forgeが実行するのではない。
+
 ## Pipeline
 
 1. **PARSE** → `orchestrator` → Extract `parsed`

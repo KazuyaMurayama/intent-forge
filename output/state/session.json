@@ -10,8 +10,30 @@
     "key_verbs": ["特定", "分析", "組合せ", "比較"]
   },
   "team": ["data_agent", "report_agent"],
-  "tasks": [],
-  "skills": {},
+  "tasks": [
+    {
+      "agent": "data_agent",
+      "task": "Yahoo Finance 5Yデイリーデータ取得・相関/リターン分析・スコアリング",
+      "input": "ticker list (15 indices/ETFs)",
+      "output": "data/daily_closes.csv, data/results.json",
+      "max_turns": 3,
+      "skills": ["file_rw", "code_exec"],
+      "depends_on": []
+    },
+    {
+      "agent": "report_agent",
+      "task": "分析結果からレポート生成・検証",
+      "input": "data/results.json",
+      "output": "REPORT.md",
+      "max_turns": 3,
+      "skills": ["file_rw", "code_exec"],
+      "depends_on": ["data_agent"]
+    }
+  ],
+  "skills": {
+    "data_agent": ["file_rw", "code_exec"],
+    "report_agent": ["file_rw", "code_exec"]
+  },
   "research_output": null,
   "file_plan": [],
   "files_written": [],
