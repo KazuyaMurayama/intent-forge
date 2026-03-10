@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "timestamp": "",
+  "current_step": 0,
+  "intent": "NASDAQと相関が低くリターンが高いインデックスを特定する",
+  "parsed": {
+    "domain": "finance",
+    "complexity": "high",
+    "output_type": "report",
+    "key_verbs": ["特定", "分析", "組合せ", "比較"]
+  },
+  "team": ["data_agent", "report_agent"],
+  "tasks": [],
+  "skills": {},
+  "research_output": null,
+  "file_plan": [],
+  "files_written": [],
+  "validation": { "passed": false, "checks": [] },
+  "errors": []
+}
