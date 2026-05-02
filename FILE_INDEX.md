@@ -1,79 +1,110 @@
-# FILE_INDEX.md — intent-forge
+# FILE_INDEX — intent-forge
 
-> **新セッション開始時に必ずこのファイルを読む。**
-> ファイル追加・削除・移動時は必ずこのファイルを更新すること。
-> 最終更新: 2026-04-30
+> ⚠️ このファイルは自動生成です。手動編集は次回更新で上書きされます。
 
-## 概要
-AIエージェントが意図(Intent)を解析・生成・レビューするマルチエージェントフレームワーク。
-
-**スタック:** Python, JSON, Markdown
-
----
-
-## 📋 最初に読むべきファイル
-
-| 優先度 | ファイル | 内容 |
-|---|---|---|
-| ★★★ | `CLAUDE.md` | 運用ルール |
-| ★★★ | `agents/orchestrator.md` | オーケストレーターエージェント定義 |
-| ★★ | `README.md` | 概要・使い方 |
-| ★★ | `output/src/analyze.py` | 分析スクリプト |
-| ★★ | `tasks/task_schema.json` | タスクスキーマ定義 |
+| 項目 | 値 |
+|---|---|
+| リポジトリ | KazuyaMurayama/intent-forge |
+| ブランチ | main |
+| 総ファイル数 | 22 |
+| 最終更新 | 2026-05-02 |
+| 管理者 | 男座員也（Kazuya Oza） |
 
 ---
 
-## 🗂️ ディレクトリ構造
+## カテゴリ別サマリー
+
+| カテゴリ | ファイル数 |
+|---|---|
+| Documentation | 13 |
+| Code | 3 |
+| Data | 4 |
+| Config | 2 |
+
+---
+
+## ディレクトリ構成
 
 ```
-intent-forge/
-├── CLAUDE.md                    ← 最重要ルール
-├── README.md
+.
 ├── agents/
-│   ├── generator.md             ← 生成エージェント
-│   ├── orchestrator.md          ← オーケストレーター
-│   ├── researcher.md            ← リサーチエージェント
-│   └── reviewer.md              ← レビューエージェント
-├── skills/registry.json
-├── state/session.json
-├── tasks/task_schema.json
-└── output/
-    ├── CLAUDE.md
-    ├── README.md
-    ├── requirements.txt
-    ├── agents/
-    │   ├── data_agent.md
-    │   └── report_agent.md
-    ├── src/
-    │   ├── analyze.py
-    │   ├── fetch_data.py
-    │   └── report.py
-    └── state/session.json
+│   ├── generator.md
+│   ├── orchestrator.md
+│   ├── researcher.md
+│   └── reviewer.md
+├── output/
+│   ├── agents/
+│   │   ├── data_agent.md
+│   │   └── report_agent.md
+│   ├── src/
+│   │   ├── analyze.py
+│   │   ├── fetch_data.py
+│   │   └── report.py
+│   ├── state/
+│   │   └── session.json
+│   ├── CLAUDE.md
+│   ├── README.md
+│   └── requirements.txt
+├── skills/
+│   └── registry.json
+├── state/
+│   └── session.json
+├── tasks/
+│   └── task_schema.json
+├── .gitignore
+├── CLAUDE.md
+├── FILE_INDEX.md
+├── README.md
+├── tasks.md
+└── Timeout_Prevention.md
 ```
 
 ---
 
-## 📑 全ファイル一覧
+## ファイル詳細
 
-| パス | 種別 | 説明 |
+### Documentation (13件)
+
+| ファイル | サイズ | 説明 |
 |---|---|---|
-| `CLAUDE.md` | ドキュメント | 運用ルール |
-| `README.md` | ドキュメント | プロジェクト概要 |
-| `agents/orchestrator.md` | エージェント | オーケストレーター定義 |
-| `agents/generator.md` | エージェント | Intent生成エージェント |
-| `agents/researcher.md` | エージェント | リサーチエージェント |
-| `agents/reviewer.md` | エージェント | レビューエージェント |
-| `skills/registry.json` | データ | スキルレジストリ |
-| `tasks/task_schema.json` | データ | タスクスキーマ定義 |
-| `state/session.json` | データ | セッション状態 |
-| `output/src/analyze.py` | Python | 分析スクリプト |
-| `output/src/fetch_data.py` | Python | データ取得スクリプト |
-| `output/src/report.py` | Python | レポート生成スクリプト |
+| `agents/generator.md` | 1.1 KB | Markdown ドキュメント |
+| `agents/orchestrator.md` | 1.4 KB | Markdown ドキュメント |
+| `agents/researcher.md` | 916 B | Markdown ドキュメント |
+| `agents/reviewer.md` | 1.5 KB | Markdown ドキュメント |
+| `CLAUDE.md` | 2.0 KB | Claude Code プロジェクト設定・命名ルール |
+| `FILE_INDEX.md` | 2.8 KB | （このファイル）全ファイルインデックス |
+| `output/agents/data_agent.md` | 724 B | リサーチ出力データ |
+| `output/agents/report_agent.md` | 477 B | リサーチ出力データ |
+| `output/CLAUDE.md` | 1004 B | Claude Code プロジェクト設定・命名ルール |
+| `output/README.md` | 680 B | リポジトリ概要・セットアップ手順 |
+| `README.md` | 2.6 KB | リポジトリ概要・セットアップ手順 |
+| `tasks.md` | 1.2 KB | タスク管理・セッション履歴 |
+| `Timeout_Prevention.md` | 4.9 KB | タイムアウト対策ガイド |
+
+### Code (3件)
+
+| ファイル | サイズ | 説明 |
+|---|---|---|
+| `output/src/analyze.py` | 2.6 KB | リサーチ出力データ |
+| `output/src/fetch_data.py` | 944 B | リサーチ出力データ |
+| `output/src/report.py` | 4.1 KB | リサーチ出力データ |
+
+### Data (4件)
+
+| ファイル | サイズ | 説明 |
+|---|---|---|
+| `output/state/session.json` | 1.2 KB | リサーチ出力データ |
+| `skills/registry.json` | 847 B | JSON データ |
+| `state/session.json` | 3.3 KB | JSON データ |
+| `tasks/task_schema.json` | 924 B | JSON データ |
+
+### Config (2件)
+
+| ファイル | サイズ | 説明 |
+|---|---|---|
+| `.gitignore` | 377 B | Git 除外設定 |
+| `output/requirements.txt` | 44 B | Python 依存パッケージリスト |
 
 ---
 
-## 🔖 ファイル更新ルール
-
-1. 新ファイル追加時: 該当セクションに1行追加
-2. ファイル削除・移動時: 該当行を削除または更新
-3. 更新後: `git add FILE_INDEX.md && git commit -m "docs: FILE_INDEX.md更新"`
+_自動生成: 2026-05-02 | 管理者: 男座員也（Kazuya Oza）_
