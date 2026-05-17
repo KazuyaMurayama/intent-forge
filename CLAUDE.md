@@ -120,4 +120,7 @@ On error: append `{ "step": N, "agent": "", "message": "" }` to `errors[]` and c
 
 ### 回答スタイル
 - 回答末尾に「**Next Action:**」でユーザーの次アクションを具体推奨。
+## 他リポジトリ参照ルール
+別リポジトリの内容を参照する必要が生じたら、必ず `.claude/cross-repo.md` を読み、その手順に従って `WebFetch` で取得する（「できない」と返さない）。
+
 <!-- GLOBAL_RULES_END -->
