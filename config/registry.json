@@ -1,0 +1,28 @@
+{
+  "skills": [
+    {
+      "id": "web_search",
+      "use_when": "External data, market info, or reference material is needed",
+      "applicable_agents": ["researcher"],
+      "requires": ["internet_access"]
+    },
+    {
+      "id": "file_rw",
+      "use_when": "Read/write project files (always available)",
+      "applicable_agents": ["orchestrator", "researcher", "generator", "reviewer"],
+      "requires": []
+    },
+    {
+      "id": "code_exec",
+      "use_when": "Code testing, validation, or computation is required",
+      "applicable_agents": ["generator", "reviewer"],
+      "requires": ["runtime_environment"]
+    },
+    {
+      "id": "api_call",
+      "use_when": "Structured data from external APIs is needed (financial, weather, etc.)",
+      "applicable_agents": ["researcher"],
+      "requires": ["internet_access"]
+    }
+  ]
+}
